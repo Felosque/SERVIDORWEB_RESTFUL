@@ -31,13 +31,12 @@ public class ServicioEstudiante{
         }
     }
     
-    public static boolean eliminarEstudiante(String pDocumento) throws Exception{
+    public static void eliminarEstudiante(String pDocumento) throws Exception{
         String consulta = "DELETE FROM estudiantes WHERE documento = '"+ pDocumento +"';";
         boolean res = con.executeQuery(consulta);
-        return res;
     }
     
-    public static boolean actualizarEstudiante(Estudiante pEstudiante) throws Exception
+    public static void actualizarEstudiante(Estudiante pEstudiante) throws Exception
     {
         String consulta = "UPDATE estudiantes\n" +
 "	SET nombres='"+ pEstudiante.getNombres() +"', apellidos='"+ pEstudiante.getApellidos() +"', " +
@@ -46,7 +45,6 @@ public class ServicioEstudiante{
             "direccion='"+ pEstudiante.getDireccion() + "', correo='"+ pEstudiante.getCorreo()+"'" +
 "	WHERE documento = '"+pEstudiante.getDocumentoIdentificacion()+ "';";
         boolean res = con.executeQuery(consulta);
-        return res;
     }
     
     public static Estudiante buscarEstudiante(String pDocumento) throws Exception {

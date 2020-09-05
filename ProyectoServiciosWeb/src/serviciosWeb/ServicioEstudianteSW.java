@@ -31,15 +31,15 @@ public class ServicioEstudianteSW {
 
     @DELETE
     @Path("eliminarEstudiante")
-    public boolean eliminarEstudiante(@QueryParam("documento") String pDocumento) throws Exception{
-        return ServicioEstudiante.eliminarEstudiante(pDocumento);
+    public void eliminarEstudiante(@QueryParam("documento") String pDocumento) throws Exception{
+        ServicioEstudiante.eliminarEstudiante(pDocumento);
     }
 
     @PUT
     @Consumes("application/json")
     @Path("actualizarEstudiante")
-    public boolean actualizarEstudiante(Estudiante pEstudiante) throws Exception{
-        return ServicioEstudiante.actualizarEstudiante(pEstudiante);
+    public void actualizarEstudiante(Estudiante pEstudiante) throws Exception{
+        ServicioEstudiante.actualizarEstudiante(pEstudiante);
     }
 
     @GET
