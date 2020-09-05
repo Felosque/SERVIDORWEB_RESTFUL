@@ -121,8 +121,8 @@ public class ServicioMatricula {
         return null;
     }
     
-    public static double darPromedioEstudiante(Matricula pMatricula) throws Exception {
-        ArrayList<Matricula> matriculas = darMatriculasEstudiante(pMatricula.getPkEstudiante());
+    public static double darPromedioEstudiante(String pMatricula) throws Exception {
+        ArrayList<Matricula> matriculas = darMatriculasEstudiante(pMatricula);
         if(matriculas.isEmpty()) return 0.0;
         double promedio = 0.0;
         for (int i = 0; i < matriculas.size(); i++) {
