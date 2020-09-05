@@ -15,7 +15,7 @@ import javax.ws.rs.QueryParam;
 
 import servicios.ServicioMatricula;
 
-@Path("serviciosWeb")
+@Path("serviciosWebMatricula")
 public class ServicioMatriculaSW {
     public ServicioMatriculaSW() {
         super();

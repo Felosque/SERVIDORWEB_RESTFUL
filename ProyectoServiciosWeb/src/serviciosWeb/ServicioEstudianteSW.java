@@ -15,7 +15,7 @@ import javax.ws.rs.QueryParam;
 import servicios.ServicioEstudiante;
 
 
-@Path("serviciosWeb")
+@Path("servicioWebEstudiante")
 public class ServicioEstudianteSW {
     
     public ServicioEstudianteSW() {

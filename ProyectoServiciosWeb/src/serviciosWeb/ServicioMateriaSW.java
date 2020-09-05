@@ -19,7 +19,7 @@ import javax.ws.rs.QueryParam;
 import servicios.ServicioMateria;
 import servicios.ServicioMatricula;
 
-@Path("serviciosWeb")
+@Path("serviciosWebMateria")
 public class ServicioMateriaSW {
    
     public ServicioMateriaSW() {
