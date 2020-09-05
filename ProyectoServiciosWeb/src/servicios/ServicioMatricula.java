@@ -5,6 +5,8 @@ import conexion.Conexion;
 import constantes.UtilitiesFunctions;
 
 import estructural.Matricula;
+import estructural.ResponseInteger;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -51,19 +53,17 @@ public class ServicioMatricula {
         return matriculasEncontradas;
     }
 
-    public static int[] darCantidadMateriasPorGradoCursando() throws Exception {
+    public static ArrayList<ResponseInteger> darCantidadMateriasPorGradoCursando() throws Exception {
         
-        int[] notasMatriculas = new int[11];
+        ArrayList<ResponseInteger> notasMatriculas = new ArrayList<>();
         String consulta = "select materias.grado, count(materias.grado) " +
                             "from matriculas, materias " +
                             "where matriculas.pkmateria = materias.codigo " +
                             "group by materias.grado;";
         ResultSet rs = Conexion.getInstance().getQuery(consulta);
         try {
-            int i = 0;
             while(rs.next()){
-                notasMatriculas[i] = rs.getInt(2);
-                i++;
+                notasMatriculas.add(new ResponseInteger(rs.getInt(2)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioMatricula.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,13 +80,13 @@ public class ServicioMatricula {
         boolean res = Conexion.getInstance().executeQuery(consulta);
     }
 
-    public static boolean darPazYSalvoEstudiante(int pGrado, Matricula pMatricula) throws Exception {
+    public static boolean darPazYSalvoEstudiante(int pGrado, String pMatricula) throws Exception {
         try {
             String consulta = "SELECT matriculas.estado" +
                                 "FROM matriculas, estudiantes, materias" +
                                 "WHERE matriculas.pkestudiante = estudiantes.documento" +
                                 "AND matriculas.pkmateria = materias.codigo" +
-                                "AND estudiantes.documento = '"+ pMatricula.getPkEstudiante() +"'" +
+                                "AND estudiantes.documento = '"+ pMatricula +"'" +
                                 "AND estudiantes.estado = 1" +
                                 "AND materias.grado = "+pGrado+"" +
                                 "ORDER BY materias.grado DESC";

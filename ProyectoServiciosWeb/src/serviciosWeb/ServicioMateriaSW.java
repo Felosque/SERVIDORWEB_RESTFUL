@@ -4,6 +4,8 @@ import conexion.Conexion;
 
 import estructural.Materia;
 
+import estructural.ResponseInteger;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -50,7 +52,8 @@ public class ServicioMateriaSW {
     @GET
     @Produces("application/json")
     @Path("cantidadMateriasRegistradas")
-    public int cantidadMateriasRegistradas() throws Exception{
-        return ServicioMateria.cantidadMateriasRegistradas();
+    public ResponseInteger cantidadMateriasRegistradas() throws Exception{
+        ResponseInteger respuesta = new ResponseInteger(ServicioMateria.cantidadMateriasRegistradas());
+        return respuesta;
     }
 }

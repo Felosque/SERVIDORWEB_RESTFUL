@@ -1,6 +1,8 @@
 package serviciosWeb;
 
 import estructural.Estudiante;
+import estructural.ResponseInteger;
+
 import java.util.ArrayList;
 
 import javax.ws.rs.Consumes;
@@ -11,6 +13,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+
+import javax.ws.rs.core.MediaType;
+
+import javax.ws.rs.core.Response;
 
 import servicios.ServicioEstudiante;
 
@@ -60,8 +66,9 @@ public class ServicioEstudianteSW {
     @GET
     @Produces("application/json")
     @Path("cantidadEstudiantesPorGenero")
-    public int[] cantidadEstudiantesPorGenero() throws Exception {
-        return ServicioEstudiante.cantidadEstudiantesPorGenero();
+    public ArrayList<ResponseInteger> cantidadEstudiantesPorGenero() throws Exception {
+        ArrayList<ResponseInteger> response = ServicioEstudiante.cantidadEstudiantesPorGenero();
+        return response;
     }
 
     @GET
@@ -74,16 +81,17 @@ public class ServicioEstudianteSW {
     @GET
     @Produces("application/json")
     @Path("darGradoEstudiante")
-    public int darGradoEstudiante(@QueryParam("documento") String pDocumento) throws Exception {
-        return ServicioEstudiante.darGradoEstudiante(pDocumento);
+    public ResponseInteger darGradoEstudiante(@QueryParam("documento") String pDocumento) throws Exception {
+        ResponseInteger response = new ResponseInteger(ServicioEstudiante.darGradoEstudiante(pDocumento));
+        return response;
     }
 
     @GET
     @Produces("application/json")
     @Path("cantidadEstudiantesRegistrados")
-    public int cantidadEstudiantesRegistrados(){
-        return ServicioEstudiante.cantidadEstudiantesRegistrados();
-            
+    public ResponseInteger cantidadEstudiantesRegistrados(){
+        ResponseInteger response = new ResponseInteger(ServicioEstudiante.cantidadEstudiantesRegistrados()); 
+        return response;   
     }
     
 }

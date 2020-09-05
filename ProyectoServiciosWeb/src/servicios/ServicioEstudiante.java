@@ -12,6 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import constantes.UtilitiesFunctions.*;
 
+import estructural.ResponseDouble;
+import estructural.ResponseInteger;
+
 public class ServicioEstudiante{
     
     private static Conexion con = Conexion.getInstance();
@@ -70,15 +73,13 @@ public class ServicioEstudiante{
     }
     
     //En la posición 0 devuelve la cantidad de hombres, en la 1 la cantidad de mujeres 
-    public static int[] cantidadEstudiantesPorGenero() throws Exception {
-        int[] cantEstu = new int[2];
-        cantEstu[0] = 0; cantEstu[1] = 0;
+    public static ArrayList<ResponseInteger> cantidadEstudiantesPorGenero() throws Exception {
+        ArrayList<ResponseInteger> cantEstu = new ArrayList<>();
         String consulta = "SELECT genero, count(genero) FROM estudiantes where estado = 1 group by genero having count(genero) > 0 ORDER BY genero ASC;";
         ResultSet rs = con.getQuery(consulta);
         try {
-            int i = 0;
             while (rs.next()) {
-                cantEstu[i] = rs.getInt(2); i++;
+                cantEstu.add(new ResponseInteger(rs.getInt(2)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioEstudiante.class.getName()).log(Level.SEVERE, null, ex);

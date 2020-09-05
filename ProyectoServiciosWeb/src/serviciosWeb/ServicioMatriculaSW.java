@@ -1,6 +1,9 @@
 package serviciosWeb;
 
 import estructural.Matricula;
+import estructural.ResponseDouble;
+import estructural.ResponseInteger;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -52,8 +55,9 @@ public class ServicioMatriculaSW {
     @GET
     @Produces("application/json")
     @Path("darCantidadMateriasPorGradoCursado")
-    public int[] darCantidadMateriasPorGradoCursando() throws Exception {
-        return ServicioMatricula.darCantidadMateriasPorGradoCursando();
+    public ArrayList<ResponseInteger> darCantidadMateriasPorGradoCursando() throws Exception {
+        ArrayList<ResponseInteger> arr = ServicioMatricula.darCantidadMateriasPorGradoCursando();
+        return arr;
     }
 
     @PUT
@@ -67,7 +71,7 @@ public class ServicioMatriculaSW {
     @Produces("application/json")
     @Path("darPazYSalvoEstudiante")
     public boolean darPazYSalvoEstudiante(@QueryParam("grado") int pGrado,
-                                          @QueryParam("matricula") Matricula pMatricula) throws Exception {
+                                          @QueryParam("matricula") String pMatricula) throws Exception {
         return ServicioMatricula.darPazYSalvoEstudiante(pGrado, pMatricula);
     }
 
@@ -87,8 +91,9 @@ public class ServicioMatriculaSW {
     @GET
     @Produces("application/json")
     @Path("darPromedioEstudiante")
-    public double darPromedioEstudiante(@QueryParam("documento") String pDocumento) throws Exception {
-        return ServicioMatricula.darPromedioEstudiante(pDocumento);
+    public ResponseDouble darPromedioEstudiante(@QueryParam("documento") String pDocumento) throws Exception {
+        ResponseDouble dou = new ResponseDouble(ServicioMatricula.darPromedioEstudiante(pDocumento));
+        return dou;
     }
 
     @GET
@@ -102,8 +107,9 @@ public class ServicioMatriculaSW {
     @GET
     @Produces("application/json")
     @Path("cantidadMatriculasRegistradas")
-    public int cantidadMatriculasRegistradas(){
-        return ServicioMatricula.cantidadMatriculasRegistradas();
+    public ResponseInteger cantidadMatriculasRegistradas(){
+        ResponseInteger inte = new ResponseInteger(ServicioMatricula.cantidadMatriculasRegistradas());
+        return inte;
     }
     
 
