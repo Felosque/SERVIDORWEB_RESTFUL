@@ -1,4 +1,4 @@
-package serviciosWeb;
+    package serviciosWeb;
 
 import estructural.Estudiante;
 import estructural.ResponseInteger;
@@ -35,7 +35,7 @@ public class ServicioEstudianteSW {
         ServicioEstudiante.insertarEstudiante(pEstudiante);
     }
 
-    @DELETE
+    @GET
     @Path("eliminarEstudiante")
     public void eliminarEstudiante(@QueryParam("documento") String pDocumento) throws Exception{
         ServicioEstudiante.eliminarEstudiante(pDocumento);

@@ -37,6 +37,13 @@ public class ServicioMatriculaSW {
     public ArrayList<Matricula> darMatriculasEstudiante(@QueryParam("documento") String pDocumento) throws Exception {
         return ServicioMatricula.darMatriculasEstudiante(pDocumento);
     }
+    
+    @GET
+    @Produces("application/json")
+    @Path("darMatriculasPorEstado")
+    public ArrayList<Matricula> darMatriculasPorEstado(@QueryParam("estado") String pEstado) throws Exception {
+        return ServicioMatricula.darMatriculasPorEstado(pEstado);
+    }
 
     @GET
     @Produces("application/json")

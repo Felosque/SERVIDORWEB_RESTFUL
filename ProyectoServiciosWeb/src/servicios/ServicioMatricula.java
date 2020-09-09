@@ -31,7 +31,14 @@ public class ServicioMatricula {
     }
 
     public static ArrayList<Matricula> darMatriculasEstudiante(String pDocumento) throws Exception {
-        String consulta = "SELECT * FROM matriculas where pkestudiante = '"+ pDocumento +"';";
+        String consulta = "SELECT * FROM matriculas where pkestudiante  LIKE '%"+ pDocumento +"%';";
+        ResultSet rs = Conexion.getInstance().getQuery(consulta);
+        ArrayList<Matricula> matriculasEncontradas = resultSetToArrayList(rs);
+        return matriculasEncontradas;
+    }
+    
+    public static ArrayList<Matricula> darMatriculasPorEstado(String pEstado) throws Exception {
+        String consulta = "SELECT * FROM matriculas where estado = "+ pEstado +";";
         ResultSet rs = Conexion.getInstance().getQuery(consulta);
         ArrayList<Matricula> matriculasEncontradas = resultSetToArrayList(rs);
         return matriculasEncontradas;
@@ -113,7 +120,7 @@ public class ServicioMatricula {
     public static Matricula darMatriculaCodigo(int pCodigo) throws Exception {
         String consulta = "select * " +
                         "from matriculas " +
-                        "where matriculas.codigo = "+ pCodigo + ";";
+                        "where matriculas.codigo LIKE '%"+ pCodigo +"%';";
         ResultSet rs = Conexion.getInstance().getQuery(consulta);
         ArrayList<Matricula> mati = resultSetToArrayList(rs);
         if(!mati.isEmpty()){
